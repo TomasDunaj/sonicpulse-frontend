@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import './App.css'
 import Login from './components/Login'
 import Profile from './components/Profile'
+import PlaylistGenerator from "./components/PlaylistGenerator.jsx";
 
 function App() {
     const [user, setUser] = useState(null)
@@ -35,7 +36,9 @@ function App() {
         return <div>Loading...</div>
     }
 
-    return (user) ? <Profile user={user}/> : <Login/>
+    return (
+        (user) ? <Profile user={user}/> : <Login/>,
+        <PlaylistGenerator />);
 }
 
 export default App
