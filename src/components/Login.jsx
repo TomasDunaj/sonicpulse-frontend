@@ -7,7 +7,7 @@ export default function Login() {
 
     return (
         <button className = "login-button" onClick={handleLogin}>
-            Prihlásiť sa cez spotify
+            Login with spotify
         </button>
 
     )

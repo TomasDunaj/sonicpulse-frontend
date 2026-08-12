@@ -33,7 +33,7 @@ function PlaylistGenerator(){
 
     return (
         <div className="playlist-generator">
-            <h3>🤖 AI Playlist Generator</h3>
+            <h3>AI Playlist Generator</h3>
 
             <form onSubmit={handleGenerate}>
                 <input
@@ -43,8 +43,8 @@ function PlaylistGenerator(){
                     placeholder="Try /workout rock/ or /chill beats/"
                     disabled={loading}
                 />
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Generujem...' : 'Vygenerovať'}
+                <button className="submit-button" type="submit" disabled={loading}>
+                    {loading ? 'Generating...' : 'Generate'}
                 </button>
             </form>
 
@@ -53,8 +53,21 @@ function PlaylistGenerator(){
             {tracks.length > 0 && (
                 <ul>
                     {tracks.map((track) => (
-                        <li key={track.id}>
-                            {track.name} - {track.artists?.map((artist) => artist.name).join(', ')}
+                        <li key={track.id || track.name} className="track-item">
+                            {track.album?.images?.[0]?.url && (
+                                <img
+                                    src={track.album.images[0].url}
+                                    alt={track.name}
+                                    className="album-cover"
+                                />
+                            )}
+
+                            <div className="track-info">
+                                <span className="track-name">{track.name}</span>
+                                <span className="track-artist">
+                        {track.artists?.map((artist) => artist.name).join(', ')}
+                    </span>
+                            </div>
                         </li>
                     ))}
                 </ul>

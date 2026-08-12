@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Login from './components/Login'
 import Profile from './components/Profile'
@@ -33,12 +33,41 @@ function App() {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>
+        return (
+            <div className="loading-screen">
+                <div className="spotify-spinner"></div>
+                <p>Loading...</p>
+            </div>
+        );
     }
 
     return (
-        (user) ? <Profile user={user}/> : <Login/>,
-        <PlaylistGenerator />);
+        <div className="spotify-app">
+            <header className="spotify-header">
+                <div className="header-brand">
+                    <span className="logo-icon">🎵</span>
+                    <h1 className="logo-text">SonicPulse <span className="accent">AI</span></h1>
+                </div>
+                {user && <Profile user={user}/>}
+            </header>
+
+            <main className="spotify-content">
+                {user ? (
+                    <>
+                        <section className="welcome-banner">
+                            <h2>Get started</h2>
+                            <p>Enter prompt and generate tracklist with AI</p>
+                        </section>
+                        <PlaylistGenerator/>
+                    </>
+                ) : (
+                    <div className="login-wrapper">
+                        <Login/>
+                    </div>
+                )}
+            </main>
+        </div>
+    );
 }
 
-export default App
+export default App;
