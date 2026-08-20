@@ -1,4 +1,5 @@
 import {useState} from "react";
+import PromptFilters from  './PromptFilters.jsx'
 
 function PlaylistGenerator(){
     const [prompt, setPrompt] = useState('')
@@ -6,7 +7,23 @@ function PlaylistGenerator(){
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
+    const [selectedTags, setSelectedTags] = useState([]);
+
+    const onToggle = (tag) => {
+        if (selectedTags.includes(tag)) {
+            const filteredTags = selectedTags.filter(presentTag => presentTag !== tag);
+            setSelectedTags(filteredTags);
+        } else {
+            setSelectedTags([...selectedTags, tag]);
+        }
+    }
+
     const handleGenerate = async (e) => {
+        const tagsString = selectedTags.length > 0 ? selectedTags.join(' ') : '';
+        const finalPrompt = tagsString
+            ? `Genres : ${tagsString}. Popis ${prompt}`
+            : prompt;
+
         try {
             e.preventDefault();
 
@@ -15,15 +32,17 @@ function PlaylistGenerator(){
             }
 
             setLoading(true);
-            const response = await fetch(`http://127.0.0.1:8080/api/spotify/generate-from-prompt?prompt=${encodeURIComponent(prompt)}`, {                method: 'GET',
+            const response = await fetch(`http://127.0.0.1:8080/api/spotify/generate-from-prompt?prompt=${encodeURIComponent(finalPrompt)}`, {                method: 'GET',
                 credentials: 'include',
             })
 
             if (!response.ok) {
                 return;
             }
+
             const data = await response.json()
             setTracks(data)
+
         } catch (error) {
             setError(error.message)
         } finally {
@@ -43,6 +62,9 @@ function PlaylistGenerator(){
                     placeholder="Try /workout rock/ or /chill beats/"
                     disabled={loading}
                 />
+
+                <PromptFilters selectedTags={selectedTags} onToggle={onToggle} />
+
                 <button className="submit-button" type="submit" disabled={loading}>
                     {loading ? 'Generating...' : 'Generate'}
                 </button>
