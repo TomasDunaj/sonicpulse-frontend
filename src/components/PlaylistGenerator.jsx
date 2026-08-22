@@ -1,7 +1,8 @@
 import {useState} from "react";
-import PromptFilters from  './PromptFilters.jsx'
+import PromptFilters from './PromptFilters.jsx'
+import TrackItem from "./TrackItem.jsx";
 
-function PlaylistGenerator(){
+function PlaylistGenerator() {
     const [prompt, setPrompt] = useState('')
     const [tracks, setTracks] = useState([])
     const [loading, setLoading] = useState(false)
@@ -27,12 +28,13 @@ function PlaylistGenerator(){
         try {
             e.preventDefault();
 
-            if (!prompt ||!prompt.trim()) {
+            if (!prompt || !prompt.trim()) {
                 return;
             }
 
             setLoading(true);
-            const response = await fetch(`http://127.0.0.1:8080/api/spotify/generate-from-prompt?prompt=${encodeURIComponent(finalPrompt)}`, {                method: 'GET',
+            const response = await fetch(`http://127.0.0.1:8080/api/spotify/generate-from-prompt?prompt=${encodeURIComponent(finalPrompt)}`, {
+                method: 'GET',
                 credentials: 'include',
             })
 
@@ -63,7 +65,7 @@ function PlaylistGenerator(){
                     disabled={loading}
                 />
 
-                <PromptFilters selectedTags={selectedTags} onToggle={onToggle} />
+                <PromptFilters selectedTags={selectedTags} onToggle={onToggle}/>
 
                 <button className="submit-button" type="submit" disabled={loading}>
                     {loading ? 'Generating...' : 'Generate'}
@@ -75,22 +77,7 @@ function PlaylistGenerator(){
             {tracks.length > 0 && (
                 <ul>
                     {tracks.map((track) => (
-                        <li key={track.id || track.name} className="track-item">
-                            {track.album?.images?.[0]?.url && (
-                                <img
-                                    src={track.album.images[0].url}
-                                    alt={track.name}
-                                    className="album-cover"
-                                />
-                            )}
-
-                            <div className="track-info">
-                                <span className="track-name">{track.name}</span>
-                                <span className="track-artist">
-                        {track.artists?.map((artist) => artist.name).join(', ')}
-                    </span>
-                            </div>
-                        </li>
+                        <TrackItem track={track} />
                     ))}
                 </ul>
             )}
