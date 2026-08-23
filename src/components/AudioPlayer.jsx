@@ -19,7 +19,7 @@ export default function AudioPlayer({previewUrl}) {
             <audio ref={audioRef}
                    src={previewUrl}
                    onEnded={() => setIsPlaying(false)}/>
-            <button onClick={togglePlay}>
+            <button className="play-button" onClick={togglePlay}>
                 {isPlaying ? 'Pause' : 'Play'}
             </button>
         </div>

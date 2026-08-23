@@ -30,35 +30,32 @@ export default function TrackItem({track}) {
         }
     }, [track]);
 
-    return (
-        <div className="track-item">
-            <li key={track.id || track.name} className="track-item">
-                {track.album?.images?.[0]?.url && (
-                    <img
-                        src={track.album.images[0].url}
-                        alt={track.name}
-                        className="album-cover"
-                    />
-                )}
 
-                <div className="track-info">
-                    <span className="track-name">{track.name}</span>
-                    <span className="track-artist"> {track.artists?.map((artist) => artist.name).join(', ')} </span>
-                </div>
-            </li>
+    return (
+        <li key={track.id || track.name} className="track-item">
+            {track.album?.images?.[0]?.url && (
+                <img
+                    src={track.album.images[0].url}
+                    alt={track.name}
+                    className="album-cover"
+                />
+            )}
+
+            <div className="track-info">
+                <span className="track-name">{track.name}</span>
+                <span className="track-artist"> {track.artists?.map((artist) => artist.name).join(', ')} </span>
+            </div>
 
             <div>
                 {loading ? 'Loading...' : (
                     previewUrl ? (
                         <AudioPlayer previewUrl={previewUrl}/>
-                    ) : <span>
+                    ) : <span className="no-preview">
                     No preview...
                     </span>
                 )
                 }
             </div>
-        </div>
-
-
+        </li>
     )
 }
