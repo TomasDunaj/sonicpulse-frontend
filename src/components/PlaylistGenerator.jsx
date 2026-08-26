@@ -1,6 +1,7 @@
 import {useState} from "react";
 import PromptFilters from './PromptFilters.jsx'
 import TrackItem from "./TrackItem.jsx";
+import SavePlaylistButton from "./SavePlaylistButton.jsx";
 
 function PlaylistGenerator() {
     const [prompt, setPrompt] = useState('')
@@ -76,10 +77,14 @@ function PlaylistGenerator() {
 
             {tracks.length > 0 && (
                 <ul>
-                    {tracks.map((track) => (
-                        <TrackItem track={track} />
+                    {tracks.map((track, index) => (
+                        <TrackItem key={index} track={track} />
                     ))}
                 </ul>
+            )}
+
+            {tracks.length > 0 && (
+                <SavePlaylistButton defaultTitle={prompt} tracks={tracks} />
             )}
         </div>
 

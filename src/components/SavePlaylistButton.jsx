@@ -8,7 +8,11 @@ export default function SavePlaylistButton({ tracks, defaultTitle }) {
         setStatus('saving')
         setError(null)
 
-        const trackUris = tracks.map(track => track.uri)
+        const trackUris = tracks
+            .filter(track => track && track.id)
+            .map(track => `spotify:track:${track.id}`)
+
+
         try {
             const response = await fetch('http://127.0.0.1:8080/api/spotify/save-playlist', {
                 method: 'POST',
@@ -21,6 +25,7 @@ export default function SavePlaylistButton({ tracks, defaultTitle }) {
 
             if (response.ok) {
                 setStatus('saved')
+                setTimeout(() => setStatus('idle'), 3000)
             } else {
                 setStatus('idle')
                 setError('Failed to save playlist')
@@ -29,6 +34,7 @@ export default function SavePlaylistButton({ tracks, defaultTitle }) {
             setStatus('idle')
             setError(error.message)
         }
+
     }
 
     return (
