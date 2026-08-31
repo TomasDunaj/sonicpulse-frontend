@@ -34,7 +34,6 @@ export default function SavePlaylistButton({ tracks, defaultTitle }) {
             setStatus('idle')
             setError(error.message)
         }
-
     }
 
     return (

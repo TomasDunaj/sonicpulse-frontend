@@ -8,8 +8,8 @@ function PlaylistGenerator() {
     const [tracks, setTracks] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-
     const [selectedTags, setSelectedTags] = useState([]);
+    const [limit, setLimit] = useState(10);
 
     const onToggle = (tag) => {
         if (selectedTags.includes(tag)) {
@@ -21,20 +21,20 @@ function PlaylistGenerator() {
     }
 
     const handleGenerate = async (e) => {
+        e.preventDefault();
+
         const tagsString = selectedTags.length > 0 ? selectedTags.join(' ') : '';
         const finalPrompt = tagsString
-            ? `Genres : ${tagsString}. Popis ${prompt}`
+            ? `Genres : ${tagsString}. Description : ${prompt}`
             : prompt;
 
         try {
-            e.preventDefault();
-
             if (!prompt || !prompt.trim()) {
                 return;
             }
 
             setLoading(true);
-            const response = await fetch(`http://127.0.0.1:8080/api/spotify/generate-from-prompt?prompt=${encodeURIComponent(finalPrompt)}`, {
+            const response = await fetch(`http://127.0.0.1:8080/api/spotify/generate-from-prompt?prompt=${encodeURIComponent(finalPrompt)}&limit=${limit}`, {
                 method: 'GET',
                 credentials: 'include',
             })
@@ -63,6 +63,13 @@ function PlaylistGenerator() {
                     value={prompt}
                     onChange={e => setPrompt(e.target.value)}
                     placeholder="Try /workout rock/ or /chill beats/"
+                    disabled={loading}
+                />
+
+                <input
+                    type="number"
+                    placeholder="Number of tracks"
+                    onChange={e => setLimit(Number(e.target.value))}
                     disabled={loading}
                 />
 
