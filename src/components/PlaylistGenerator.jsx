@@ -53,6 +53,30 @@ function PlaylistGenerator() {
         }
     }
 
+    const handleSwapTrack = async (indexToSwap, keyword) => {
+        const excludedIds = tracks.map(track => track.id);
+
+        try {
+            const response = await fetch('http://127.0.0.1:8080/api/spotify/swap-track', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({keyword: keyword, excludedIds: excludedIds}),
+            });
+
+            if (response.ok) {
+                const newTrack = await response.json();
+                setTracks(prevTracks => {
+                    const updated = [...prevTracks];
+                    updated[indexToSwap] = newTrack;
+                    return updated;
+                });
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div className="playlist-generator">
             <h3>AI Playlist Generator</h3>
@@ -85,7 +109,10 @@ function PlaylistGenerator() {
             {tracks.length > 0 && (
                 <ul>
                     {tracks.map((track, index) => (
-                        <TrackItem key={index} track={track} />
+                        <TrackItem key={index}
+                                   track={track}
+                                   index={index}
+                                   onSwap={handleSwapTrack}/>
                     ))}
                 </ul>
             )}

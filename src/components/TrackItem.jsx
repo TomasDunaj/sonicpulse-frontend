@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react'
 import AudioPlayer from "./AudioPlayer.jsx";
+import SwapButton from "./SwapButton.jsx";
 
-export default function TrackItem({track}) {
+export default function TrackItem({track, index, onSwap}) {
 
     const [previewUrl, setPreviewUrl] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -55,6 +56,10 @@ export default function TrackItem({track}) {
                     </span>
                 )
                 }
+            </div>
+
+            <div>
+                <SwapButton onClick={() => onSwap(index, track.artists[0].name)}/>
             </div>
         </li>
     )
