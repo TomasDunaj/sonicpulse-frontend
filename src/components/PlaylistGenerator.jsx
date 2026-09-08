@@ -92,6 +92,7 @@ function PlaylistGenerator() {
 
                 <input
                     type="number"
+                    className="limit-form"
                     placeholder="Number of tracks"
                     onChange={e => setLimit(Number(e.target.value))}
                     disabled={loading}
