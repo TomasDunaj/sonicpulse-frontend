@@ -2,6 +2,7 @@ import {useState} from "react";
 import PromptFilters from './PromptFilters.jsx'
 import TrackItem from "./TrackItem.jsx";
 import SavePlaylistButton from "./SavePlaylistButton.jsx";
+import DeleteButton from "./DeleteButton.jsx";
 
 function PlaylistGenerator() {
     const [prompt, setPrompt] = useState('')
@@ -77,6 +78,10 @@ function PlaylistGenerator() {
         }
     };
 
+    const deleteTrack = (songId) => {
+        setTracks(tracks.filter(track => track.id !== songId));
+    }
+
     return (
         <div className="playlist-generator">
             <h3>AI Playlist Generator</h3>
@@ -110,16 +115,20 @@ function PlaylistGenerator() {
             {tracks.length > 0 && (
                 <ul>
                     {tracks.map((track, index) => (
-                        <TrackItem key={index}
-                                   track={track}
-                                   index={index}
-                                   onSwap={handleSwapTrack}/>
+                        <li key={index}>
+                            <TrackItem key={index}
+                                       track={track}
+                                       index={index}
+                                       onSwap={handleSwapTrack}
+                            />
+                            <DeleteButton onDelete={() => {deleteTrack(track.id)}}/>
+                        </li>
                     ))}
                 </ul>
             )}
 
             {tracks.length > 0 && (
-                <SavePlaylistButton defaultTitle={prompt} tracks={tracks} />
+                <SavePlaylistButton defaultTitle={prompt} tracks={tracks}/>
             )}
         </div>
 
