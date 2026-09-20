@@ -57,10 +57,11 @@ export default function TrackItem({track, index, onSwap}) {
                 )
                 }
             </div>
-
-            <div>
-                <SwapButton onClick={() => onSwap(index, track.artists[0].name)}/>
-            </div>
+            {onSwap && (
+                <div>
+                    <SwapButton onClick={() => onSwap(index, track.artists[0].name)}/>
+                </div>
+            )}
         </li>
     )
 }

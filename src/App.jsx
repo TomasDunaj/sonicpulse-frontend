@@ -3,10 +3,12 @@ import './App.css'
 import Login from './components/Login'
 import Profile from './components/Profile'
 import PlaylistGenerator from "./components/PlaylistGenerator.jsx";
+import RecommendationsModal from "./components/RecommendationsModal.jsx";
 
 function App() {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     useEffect(() => {
         async function fetchUser() {
@@ -58,6 +60,12 @@ function App() {
                             <h2>Get started</h2>
                             <p>Enter prompt and generate tracklist with AI</p>
                         </section>
+
+                        <section className="recommendations-section">
+                            <button className="recommendations-button" onClick={() => setIsModalOpen(true)}>
+                                Something for you
+                            </button>
+                        </section>
                         <PlaylistGenerator/>
                     </>
                 ) : (
@@ -65,6 +73,13 @@ function App() {
                         <Login/>
                     </div>
                 )}
+
+                <RecommendationsModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    />
+
+
             </main>
         </div>
     );
