@@ -1,7 +1,7 @@
 export default function SwapButton({ onClick }) {
     return (
         <button className="swap-button" onClick={onClick}>
-            🔄 Change
+            <span className="icon">🔄</span>  Change
             </button>
     );
 }

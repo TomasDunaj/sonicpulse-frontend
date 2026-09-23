@@ -1,6 +1,6 @@
 export default function DeleteButton({onDelete}) {
     return (
-        <button className="delete-btn" onClick={onDelete}>
+        <button className="delete-button" onClick={onDelete}>
             Delete
         </button>
     )

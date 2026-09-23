@@ -120,8 +120,8 @@ function PlaylistGenerator() {
                                        track={track}
                                        index={index}
                                        onSwap={handleSwapTrack}
+                                       onDelete={deleteTrack}
                             />
-                            <DeleteButton onDelete={() => {deleteTrack(track.id)}}/>
                         </li>
                     ))}
                 </ul>

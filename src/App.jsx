@@ -46,11 +46,16 @@ function App() {
     return (
         <div className="spotify-app">
             <header className="spotify-header">
+                <div className="header-spacer left"></div>
+
                 <div className="header-brand">
-                    <span className="logo-icon">🎵</span>
+                    <img src={"src/assets/logo_spotify.png"} className="logo-icon" alt="Logo" />
                     <h1 className="logo-text">SonicPulse <span className="accent">AI</span></h1>
                 </div>
-                {user && <Profile user={user}/>}
+
+                <div className="header-spacer right">
+                    {user && <Profile user={user}/>}
+                </div>
             </header>
 
             <main className="spotify-content">
@@ -63,7 +68,7 @@ function App() {
 
                         <section className="recommendations-section">
                             <button className="recommendations-button" onClick={() => setIsModalOpen(true)}>
-                                Something for you
+                                Recommended for you
                             </button>
                         </section>
                         <PlaylistGenerator/>
