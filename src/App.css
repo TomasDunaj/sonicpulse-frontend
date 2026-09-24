@@ -34,6 +34,34 @@ body {
     gap: 24px;
 }
 
+@media (max-width: 768px) {
+    .spotify-app {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 10px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+
+    .spotify-content {
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+
+    .spotify-header {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        padding: 16px !important;
+    }
+
+    .header-spacer {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+}
+
 .spotify-header {
     display: flex;
     justify-content: space-between;
@@ -808,3 +836,4 @@ body {
 .login-button:active {
     transform: translateY(0) scale(0.97);
 }
+
