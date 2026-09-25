@@ -1,6 +1,3 @@
-import './Profile.css';
-
-
 export default function Profile({ user }) {
     return (
         <div className="profile-container">

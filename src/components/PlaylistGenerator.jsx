@@ -2,7 +2,6 @@ import {useState} from "react";
 import PromptFilters from './PromptFilters.jsx'
 import TrackItem from "./TrackItem.jsx";
 import SavePlaylistButton from "./SavePlaylistButton.jsx";
-import DeleteButton from "./DeleteButton.jsx";
 
 function PlaylistGenerator() {
     const [prompt, setPrompt] = useState('')
