@@ -2,14 +2,16 @@ import {useState} from "react";
 import PromptFilters from './PromptFilters.jsx'
 import TrackItem from "./TrackItem.jsx";
 import SavePlaylistButton from "./SavePlaylistButton.jsx";
+import ModeSelector from "./ModeSelector.jsx";
 
 function PlaylistGenerator() {
     const [prompt, setPrompt] = useState('')
     const [tracks, setTracks] = useState([])
     const [loading, setLoading] = useState(false)
+    const [generationMode, setGenerationMode] = useState('RESTRICTIVE')
     const [error, setError] = useState(null)
-    const [selectedTags, setSelectedTags] = useState([]);
-    const [limit, setLimit] = useState(10);
+    const [selectedTags, setSelectedTags] = useState([])
+    const [limit, setLimit] = useState(10)
 
     const onToggle = (tag) => {
         if (selectedTags.includes(tag)) {
@@ -34,7 +36,7 @@ function PlaylistGenerator() {
             }
 
             setLoading(true);
-            const response = await fetch(`http://127.0.0.1:8080/api/spotify/generate-from-prompt?prompt=${encodeURIComponent(finalPrompt)}&limit=${limit}`, {
+            const response = await fetch(`http://127.0.0.1:8080/api/spotify/generate-from-prompt?prompt=${encodeURIComponent(finalPrompt)}&generationMode=${generationMode}&limit=${limit}`, {
                 method: 'GET',
                 credentials: 'include',
             })
@@ -93,6 +95,8 @@ function PlaylistGenerator() {
                     placeholder="Try /workout rock/ or /chill beats/"
                     disabled={loading}
                 />
+
+                <ModeSelector selectedMode={generationMode} onChange={setGenerationMode} />
 
                 <input
                     type="number"
