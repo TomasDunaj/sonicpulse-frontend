@@ -8,7 +8,7 @@ export default function ModeSelector({selectedMode, onChange}) {
     return (
         <div className="mode-selector-container">
             <span className="mode-selector-label">
-                Generation mode :
+                Generation mode <span className="double-dot"> : </span>
             </span>
 
             <button type="button"
