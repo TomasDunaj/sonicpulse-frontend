@@ -92,6 +92,7 @@ function PlaylistGenerator() {
             <form onSubmit={handleGenerate}>
                 <input
                     type="text"
+                    className="text-input"
                     value={prompt}
                     onChange={e => setPrompt(e.target.value)}
                     placeholder="Try /workout rock/ or /chill beats/"
@@ -102,7 +103,7 @@ function PlaylistGenerator() {
 
                 <input
                     type="number"
-                    className="limit-form"
+                    className="limit-input"
                     placeholder="Number of tracks"
                     min="1"
                     onChange={e => setLimit(Number(e.target.value))}

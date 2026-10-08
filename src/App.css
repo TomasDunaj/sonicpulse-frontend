@@ -162,7 +162,6 @@ body {
 }
 
 
-
 .login-wrapper {
     display: flex;
     justify-content: center;
@@ -220,7 +219,7 @@ body {
         gap: 16px;
     }
 
-    input[type=text] {
+    .text-input {
         width: 100%;
         background-color: #242424;
         border: 1px solid #383838;
@@ -481,6 +480,7 @@ body {
 
 
 /* Limit Form & Input Styling */
+
 .limit-form {
     display: flex;
     align-items: center;
@@ -498,21 +498,19 @@ body {
         border-color: var(--accent);
     }
 
-
-    input[type=number] {
+    .limit-input {
         background-color: #242424;
         border: 1px solid #383838;
         border-radius: 6px;
         padding: 8px 10px;
         color: var(--text-main);
-        font-size: 8rem; !important;
+        font-size: 1rem;
         font-weight: 600;
         text-align: center;
         outline: none;
         transition: all 0.2s ease;
 
         -moz-appearance: textfield;
-
 
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
@@ -609,6 +607,7 @@ body {
 .modal-body::-webkit-scrollbar {
     width: 6px;
 }
+
 .modal-body::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
