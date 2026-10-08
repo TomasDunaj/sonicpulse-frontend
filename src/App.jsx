@@ -4,6 +4,7 @@ import Login from './components/Login'
 import Profile from './components/Profile'
 import PlaylistGenerator from "./components/PlaylistGenerator.jsx";
 import RecommendationsModal from "./components/RecommendationsModal.jsx";
+import logoImg from './assets/logo_spotify.png';
 
 function App() {
     const [user, setUser] = useState(null)
@@ -51,7 +52,7 @@ function App() {
                 <div className="header-spacer left"></div>
 
                 <div className="header-brand">
-                    <img src={"src/assets/logo_spotify.png"} className="logo-icon" alt="Logo" />
+                    <img src={logoImg} alt="Logo" className="logo-icon"/>
                     <h1 className="logo-text">SonicPulse <span className="accent">AI</span></h1>
                 </div>
 
