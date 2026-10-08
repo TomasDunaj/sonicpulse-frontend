@@ -220,7 +220,7 @@ body {
         gap: 16px;
     }
 
-    input[type="text"] {
+    input[type=text] {
         width: 100%;
         background-color: #242424;
         border: 1px solid #383838;
@@ -499,7 +499,7 @@ body {
     }
 
 
-    input[type="number"] {
+    input[type=number] {
         background-color: #242424;
         border: 1px solid #383838;
         border-radius: 6px;
