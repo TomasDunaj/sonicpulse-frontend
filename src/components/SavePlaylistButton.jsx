@@ -2,11 +2,11 @@ import { useState } from 'react'
 
 export default function SavePlaylistButton({ tracks, defaultTitle }) {
     const [status, setStatus] = useState('idle')
-    const [error, setError] = useState(null)
+
+    const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8080';
 
     const handleSave = async () => {
         setStatus('saving')
-        setError(null)
 
         const trackUris = tracks
             .filter(track => track && track.id)
@@ -14,7 +14,7 @@ export default function SavePlaylistButton({ tracks, defaultTitle }) {
 
 
         try {
-            const response = await fetch('http://127.0.0.1:8080/api/spotify/save-playlist', {
+            const response = await fetch(`${API_URL}/api/spotify/save-playlist`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -28,11 +28,9 @@ export default function SavePlaylistButton({ tracks, defaultTitle }) {
                 setTimeout(() => setStatus('idle'), 3000)
             } else {
                 setStatus('idle')
-                setError('Failed to save playlist')
             }
         } catch (error) {
             setStatus('idle')
-            setError(error.message)
         }
     }
 

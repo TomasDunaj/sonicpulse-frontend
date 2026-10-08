@@ -10,10 +10,12 @@ function App() {
     const [loading, setLoading] = useState(true)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8080';
+
     useEffect(() => {
         async function fetchUser() {
             try {
-                const response = await fetch('http://127.0.0.1:8080/api/users/me', {
+                const response = await fetch(`${API_URL}/api/users/me`, {
                     method: 'GET',
                     credentials: 'include'
                 });

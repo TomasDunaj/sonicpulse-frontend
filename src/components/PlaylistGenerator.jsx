@@ -13,6 +13,8 @@ function PlaylistGenerator() {
     const [selectedTags, setSelectedTags] = useState([])
     const [limit, setLimit] = useState(10)
 
+    const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8080';
+
     const onToggle = (tag) => {
         if (selectedTags.includes(tag)) {
             const filteredTags = selectedTags.filter(presentTag => presentTag !== tag);
@@ -36,7 +38,7 @@ function PlaylistGenerator() {
             }
 
             setLoading(true);
-            const response = await fetch(`http://127.0.0.1:8080/api/spotify/generate-from-prompt?prompt=${encodeURIComponent(finalPrompt)}&generationMode=${generationMode}&limit=${limit}`, {
+            const response = await fetch(`${API_URL}/api/spotify/generate-from-prompt?prompt=${encodeURIComponent(finalPrompt)}&generationMode=${generationMode}&limit=${limit}`, {
                 method: 'GET',
                 credentials: 'include',
             })
@@ -59,7 +61,7 @@ function PlaylistGenerator() {
         const excludedIds = tracks.map(track => track.id);
 
         try {
-            const response = await fetch('http://127.0.0.1:8080/api/spotify/swap-track', {
+            const response = await fetch(`${API_URL}/api/spotify/swap-track`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {'Content-Type': 'application/json'},

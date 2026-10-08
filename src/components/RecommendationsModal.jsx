@@ -5,12 +5,14 @@ export default function RecommendationsModal({isOpen, onClose}) {
     const [tracks, setTracks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8080';
+
     useEffect(() => {
         if (isOpen) {
             const fetchRecommendations = async () => {
                 setIsLoading(true);
                 try {
-                    const response = await fetch('http://127.0.0.1:8080/api/spotify/recommendations', {
+                    const response = await fetch(`${API_URL}/api/spotify/recommendations`, {
                         method: 'GET',
                         credentials: 'include'
                     });
