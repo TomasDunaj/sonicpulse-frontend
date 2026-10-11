@@ -235,7 +235,6 @@ body {
         flex-direction: column;
         gap: 8px;
 
-
         li.track-item {
             display: flex;
             align-items: center;
@@ -270,7 +269,6 @@ body {
                     font-weight: 600;
                     font-size: 1.4rem;
                     color: var(--text-main);
-
                 }
 
                 .track-artist {
@@ -412,7 +410,7 @@ body {
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     box-shadow: 0 4px 12px rgba(30, 215, 96, 0.25) !important;
     margin-top: 16px !important;
-    width: 100% !important; /* Na mobile alebo šírke kontajnera sa môže pekne roztiahnuť, alebo nechaj width: auto */
+    width: 100% !important;
 
     &:hover {
         background-color: #1fdf64 !important;
@@ -483,7 +481,6 @@ body {
         opacity: 0.6 !important;
         cursor: not-allowed !important;
     }
-
 }
 
 .modal-overlay {
@@ -586,18 +583,17 @@ body {
         font-weight: 600;
         color: #ffffff;
         text-align: center !important;
-        text-wrap: pretty; !important;
+        text-wrap: pretty !important;
         word-break: break-word !important;
         overflow-wrap: break-word !important;
         padding-left: 1.5rem !important;
-
     }
 
     .track-artist {
         font-size: 0.9rem;
         color: #b3b3b3;
         text-align: center !important;
-        text-wrap: pretty; !important;
+        text-wrap: pretty !important;
         word-break: break-word !important;
         overflow-wrap: break-word !important;
         padding-left: 1.5rem !important;
@@ -860,69 +856,66 @@ body {
         justify-content: center !important;
     }
 
-    @media (max-width: 768px) {
-        .playlist-generator ul li.track-item {
-            display: grid !important;
-            grid-template-columns: 1fr auto !important;
-            grid-template-areas:
-            "cover buttons"
-            "info buttons" !important;
-            align-items: center !important;
-            gap: 8px 12px !important;
-            padding: 14px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-        }
+    .playlist-generator ul li.track-item {
+        display: grid !important;
+        grid-template-columns: 1fr auto !important;
+        grid-template-areas:
+        "cover buttons"
+        "info buttons" !important;
+        align-items: center !important;
+        gap: 8px 12px !important;
+        padding: 14px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
 
-        .playlist-generator ul li.track-item .album-cover {
-            grid-area: cover !important;
-            width: 100px !important;
-            height: 100px !important;
-            object-fit: cover !important;
-            border-radius: 6px !important;
-            justify-self: center !important;
-        }
+    .playlist-generator ul li.track-item .album-cover {
+        grid-area: cover !important;
+        width: 100px !important;
+        height: 100px !important;
+        object-fit: cover !important;
+        border-radius: 6px !important;
+        justify-self: center !important;
+    }
 
-        .playlist-generator ul li.track-item .track-info {
-            grid-area: info !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            text-align: left !important;
-            min-width: 0 !important;
-        }
+    .playlist-generator ul li.track-item .track-info {
+        grid-area: info !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: left !important;
+        min-width: 0 !important;
+    }
 
-        .playlist-generator ul li.track-item .track-info .track-name {
-            font-size: 1rem !important;
-            font-weight: 700 !important;
-            text-align: center !important;
-            text-wrap: pretty !important;
-        }
+    .playlist-generator ul li.track-item .track-info .track-name {
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+        text-wrap: pretty !important;
+    }
 
-        .playlist-generator ul li.track-item .track-info .track-artist {
-            font-size: 0.8rem !important;
-            text-align: center !important;
-            text-wrap: pretty !important;
-        }
+    .playlist-generator ul li.track-item .track-info .track-artist {
+        font-size: 0.8rem !important;
+        text-align: center !important;
+        text-wrap: pretty !important;
+    }
 
-        /* Kontajner tlačidiel vpravo */
-        .playlist-generator ul li.track-item .track-controls {
-            grid-area: buttons !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 8px !important;
-        }
+    .playlist-generator ul li.track-item .track-controls {
+        grid-area: buttons !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+    }
 
-        .playlist-generator ul li.track-item .track-controls > * {
-            width: 120px !important;
-            box-sizing: border-box !important;
-        }
+    .playlist-generator ul li.track-item .track-controls > * {
+        width: 120px !important;
+        box-sizing: border-box !important;
+    }
 
-        .playlist-generator ul li.track-item .play-button {
-            width: 100% !important;
-        }
+    .playlist-generator ul li.track-item .play-button {
+        width: 100% !important;
     }
 
     .modal-content {
