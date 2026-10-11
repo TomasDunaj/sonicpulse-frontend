@@ -962,7 +962,7 @@ body {
         overflow: visible !important;
         font-size: 1rem !important;
         text-align: center !important;
-        text-wrap: pretty; !important;
+        text-wrap: pretty !important;
         word-break: break-word !important;
         overflow-wrap: break-word !important;
     }
