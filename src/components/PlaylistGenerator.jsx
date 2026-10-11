@@ -106,6 +106,7 @@ function PlaylistGenerator() {
                     className="limit-input"
                     placeholder="Number of tracks"
                     min="1"
+                    max="25"
                     onChange={e => setLimit(Number(e.target.value))}
                     disabled={loading}
                 />
@@ -122,14 +123,12 @@ function PlaylistGenerator() {
             {tracks.length > 0 && (
                 <ul>
                     {tracks.map((track, index) => (
-                        <li key={index}>
                             <TrackItem key={index}
                                        track={track}
                                        index={index}
                                        onSwap={handleSwapTrack}
                                        onDelete={deleteTrack}
                             />
-                        </li>
                     ))}
                 </ul>
             )}

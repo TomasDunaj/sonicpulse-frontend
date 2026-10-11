@@ -48,27 +48,27 @@ export default function TrackItem({track, index, onSwap, onDelete}) {
                 <span className="track-artist"> {track.artists?.map((artist) => artist.name).join(', ')} </span>
             </div>
 
-            <div>
-                {loading ? 'Loading...' : (
-                    previewUrl ? (
-                        <AudioPlayer previewUrl={previewUrl}/>
-                    ) : <span className="no-preview">
-                    No preview...
-                    </span>
-                )
-                }
-            </div>
-            {onSwap && (
-                <div>
-                    <SwapButton onClick={() => onSwap(index, track.artists[0].name)}/>
-                </div>
-            )}
+            <div className="track-controls">
+                {loading ? (
+                    <span>Loading...</span>
+                ) : previewUrl ? (
+                    <AudioPlayer previewUrl={previewUrl} />
+                ) : (
+                    <span className="no-preview">No preview...</span>
+                )}
 
-            {onDelete && (
-                <div>
-                    <DeleteButton onDelete={() => {onDelete(track.id)}}/>
-                </div>
-            )}
+                {onSwap && (
+                    <SwapButton
+                        onClick={() => onSwap(index, track.artists[0].name)}
+                    />
+                )}
+
+                {onDelete && (
+                    <DeleteButton
+                        onDelete={() => onDelete(track.id)}
+                    />
+                )}
+            </div>
         </li>
     )
 }
